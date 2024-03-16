@@ -1354,10 +1354,10 @@ function ReaderHighlight:lookup(selected_text, selected_link)
     end
 
     -- if we extracted text directly
-    if #selected_text.text > 0 and self.hold_pos then
+    if selected_text.text and self.hold_pos then
         self.ui:handleEvent(Event:new("LookupWord", selected_text.text, false, word_boxes, self, selected_link))
     -- or we will do OCR
-    elseif #selected_text.sboxes > 0 and self.hold_pos then
+    elseif selected_text.sboxes and self.hold_pos then
         local text = self.ui.document:getOCRText(self.hold_pos.page, selected_text.sboxes)
         if not text then
             -- getOCRText is not implemented in some document backends, but
